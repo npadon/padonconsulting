@@ -1,0 +1,37 @@
+# creates an s3 bucket with an open policy and exports the bucket
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  BucketName:
+    Type: String
+    Default: padonconsulting-bucket
+
+Resources:
+  # creates a bucket named according to the BucketName Parameters with default web config
+  s3hosting:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+
+  # creates a policy for the named bucket that allows all get requests
+  openpolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref BucketName
+      PolicyDocument:
+        Statement:
+          - Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Resource: !Join ['',['arn:aws:s3:::', !Ref BucketName, '/*']]
+            Principal: '*'
+
+Outputs:
+  s3hosting:
+    Description: 'The bucket created for the stack'
+    Value: !GetAtt s3hosting.BucketName
+    Export:
+      Name: !Sub '${AWS::StackName}-BucketName'
