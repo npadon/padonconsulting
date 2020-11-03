@@ -4,16 +4,16 @@
       <v-card-title>
         <v-row align="center"  justify="center">
           <v-col>
-          <h1>{{ $prismic.asText(document.title) }}</h1>
-          <h3 light>{{ $prismic.asText(document.subtitle) }}</h3>
+          <div class="text-h4" light>{{ $prismic.asText(document.title) }}</div>
+          <div class="text-subtitle-1" light>{{ $prismic.asText(document.subtitle) }}</div>
           </v-col>
-          <v-col class="col-4">
-          <v-img max-width="200"  :src="document.header_image.url" ></v-img>
+          <v-col class="col-2">
+          <v-img max-width="100%" :src="document.header_image.url" ></v-img>
           </v-col>
         </v-row>
         </v-card-title>
         <v-divider />
-      <v-card-text v-html=" $prismic.asHtml(document.body)"></v-card-text>
+      <v-card-text v-html="$prismic.asHtml(document.body)"></v-card-text>
     </v-card>
 
   </v-container>

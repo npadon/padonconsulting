@@ -1,6 +1,8 @@
 <template>
     <v-container>
     <v-card>
+      <v-card-title class="text-h3">About</v-card-title>
+      <v-divider></v-divider>
       <v-card-text v-html=" $prismic.asHtml(document.main_text)"></v-card-text>
     </v-card>
   </v-container>
