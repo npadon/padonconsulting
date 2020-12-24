@@ -61,8 +61,7 @@ export default function (type, element, content, children) {
       return `<p>${children.join('')}</p>`;
 
     case Elements.preformatted:
-      // return `<pre><code>${children.join('')}</code></pre>`;
-      return `<pre><div class="d-block pa-2 black white--text">${children.join('')}</div></pre>`;
+      return `<pre><div class="d-block pa-2 black white--text">${element.text}</div></pre>`;
 
     case Elements.strong:
       return `<strong>${children.join('')}</strong>`;
